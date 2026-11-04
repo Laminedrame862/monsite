@@ -1,0 +1,38 @@
+      {% extends 'blog/base.html' %}
+          {% load static %}
+   {% block contenu %}
+   <div class="p-5 mb-4 bg-light rounded">
+         <img src="   {% static 'blog/images/marche.jpg' %}"
+          class="img-fluid rounded mb-4 w-100"
+          style="max-height: 350px; object-fit: cover;"
+          alt="Village de BEMET">
+     <h1>Bienvenue à BEMET</h1>
+     <p class="lead">Découvrez notre village, son histoire, ses actualités et ses événements.</p>
+   </div>
+
+   <h2>Dernières actualités</h2>
+   <div class="row">
+     {% for a in actualites %}
+     <div class="col-md-4 mb-3">
+       <div class="card h-100">
+         {% if a.image %}<img src="{{ a.image.url }}" class="card-img-top" alt="{{ a.titre }}">{% endif %}
+         <div class="card-body">
+           <h5 class="card-title">{{ a.titre }}</h5>
+           <p class="card-text">{{ a.contenu|truncatewords:20 }}</p>
+         </div>
+       </div>
+     </div>
+     {% empty %}
+     <p>Aucune actualité pour le moment.</p>
+     {% endfor %}
+   </div>
+
+   <h2 class="mt-4">Prochains événements</h2>
+   <ul>
+     {% for e in evenements %}
+       <li><strong>{{ e.nom }}</strong> : {{ e.date|date:"d/m/Y" }} à {{ e.lieu }}</li>
+     {% empty %}
+       <li>Aucun événement prévu.</li>
+     {% endfor %}
+   </ul>
+   {% endblock %}

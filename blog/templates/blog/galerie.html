@@ -1,0 +1,15 @@
+      {% extends 'blog/base.html' %}
+
+   {% block contenu %}
+   <h1>Galerie de BEMET</h1>
+   <div class="row">
+     {% for p in photos %}
+     <div class="col-md-4 mb-3">
+       <img src="{{ p.image.url }}" class="img-fluid rounded" alt="{{ p.legende }}">
+       <p class="text-center">{{ p.legende }}</p>
+     </div>
+     {% empty %}
+     <p>Aucune photo pour le moment.</p>
+     {% endfor %}
+   </div>
+   {% endblock %}
