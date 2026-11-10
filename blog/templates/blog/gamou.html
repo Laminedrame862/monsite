@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<section class="page-titre">
+  <h1>Le Gamou</h1>
+  <p>La grande fête annuelle de BEMET, dans la joie, la prière et le partage.</p>
+</section>
+<section class="container">
+  <div class="grille-photos">
+    {% for p in photos %}
+    <a href="{{ p.image.url }}" target="_blank" class="photo">
+      <img src="{{ p.image.url }}" alt="{{ p.titre }}">
+      <span>{{ p.titre }}</span>
+    </a>
+    {% empty %}
+    <p>Aucune photo du Gamou pour le moment.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<section class="page-titre">
+  <h1>{{ maire.nom }}</h1>
+  <p>{{ maire.periode }}</p>
+</section>
+
+<section class="container maire-fiche">
+  <div class="maire-photo">
+    {% if maire.photo %}
+    <img src="{{ maire.photo.url }}" alt="{{ maire.nom }}">
+    {% endif %}
+  </div>
+  <div class="maire-texte">
+    <h2>Biographie</h2>
+    <p>{{ maire.biographie|linebreaksbr }}</p>
+    <a href="{% url 'accueil' %}" class="lien-fort">Retour à l'accueil <span class="fleche">←</span></a>
+  </div>
+</section>
+
+{% endblock %}

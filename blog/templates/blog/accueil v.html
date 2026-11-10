@@ -1,0 +1,97 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- 1. Bannière -->
+ 
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline
+         poster="{% static 'blog/images/bemet.jpeg' %}">
+    <source src="{% static 'blog/videos/bemet.mp4' %}" type="video/mp4">
+  </video>
+  <div class="hero-text">
+    <h1>Bienvenue<br>à BEMET</h1>
+    <p>Découvrez notre village : apprenez-en davantage sur son histoire, ses actualités et ses événements.</p>
+  </div>
+</section>
+
+<!-- 2. Actualités en vedette -->
+<section class="container">
+  <h2 class="titre-section">Actualités en vedette</h2>
+
+  <div class="actu-haut">
+    {% for a in actualites|slice:":2" %}
+    <article class="actu-grande" style="background-image:url{ if a.image %}[{ a.image.url }]{% endif %};">
+      <span class="etiquette">▣ Article</span>
+      <div>
+        <span class="etiquette">{{ a.date|date:"j F Y" }}</span>
+        <h3>{{ a.titre }}</h3>
+      </div>
+    </article>
+    {% empty %}
+    <p>Aucune actualité pour le moment.</p>
+    {% endfor %}
+  </div>
+
+  <div class="actu-bas">
+    {% for a in actualites|slice:"2:5" %}
+    <article class="actu-petite">
+      <div class="rond" style="background-image:url{if a.image %}[{ a.image.url }]{% endif %};"></div>
+      <div>
+        <span class="etiquette sombre-txt">{{ a.date|date:"j F Y" }}</span>
+        <h4>{{ a.titre }}</h4>
+        <span class="etiquette sombre-txt">▣ Article</span>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- 3. Article vedette -->
+<section class="vedette" style="background-image:url{static 'blog/images/gamou.jpeg' %};">
+  <div class="container">
+    <span class="etiquette">★ Article vedette</span>
+    <h2>Le Gamou de BEMET, la grande fête du village.</h2>
+    <p>Chaque année, les habitants de BEMET se réunissent pour célébrer le Gamou dans la joie, la prière et le partage.</p>
+    <a href="{% url 'presentation' %}" class="lien-fort">Lisez l'histoire <span class="fleche">→</span></a>
+  </div>
+</section>
+
+<!-- 4. Fonctionnalité spéciale -->
+<section class="special">
+  <div class="container special-grille">
+    <div>
+      <span class="etiquette">Fonctionnalité spéciale</span>
+      <h2>Partagez BEMET</h2>
+      <p>Envoyez-nous vos photos et vos vidéos du village : elles seront publiées dans la galerie pour que tout le monde puisse découvrir BEMET.</p>
+      <a href="{% url 'contact' %}" class="lien-fort">Envoyez vos souvenirs et participez à la vie du village ! <span class="fleche">→</span></a>
+    </div>
+    <div>
+      <img src="{% static 'blog/images/galerie.jpeg' %}" alt="Galerie de BEMET">
+      <p class="legende">BEMET</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Découvrez d'autres sujets -->
+<section class="sujets">
+  <div class="container">
+    <h2 class="titre-section">Découvrez BEMET</h2>
+    <div class="grille-sujets">
+      <a href="{% url 'presentation' %}" class="carte-v" style="background-image:url{static 'blog/images/histoire.jpeg' %};">
+        <span>Histoire <i class="fleche">→</i></span>
+      </a>
+      <a href="{% url 'galerie' %}" class="carte-v" style="background-image:url{static 'blog/images/galerie.jpeg' %};">
+        <span>Galerie <i class="fleche">→</i></span>
+      </a>
+      <a href="{% url 'galerie' %}" class="carte-v" style="background-image:url{static 'blog/images/videos.jpeg' %};">
+        <span>Vidéos <i class="fleche">→</i></span>
+      </a>
+      <a href="{% url 'presentation' %}" class="carte-v" style="background-image:url{static 'blog/images/gamou.jpeg' %};">
+        <span>Le Gamou <i class="fleche">→</i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

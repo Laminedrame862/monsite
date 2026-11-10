@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<section class="page-titre">
+  <h1>Vidéos</h1>
+  <p>Le village en images animées.</p>
+</section>
+<section class="container">
+  <div class="grille-videos">
+    {% for v in videos %}
+    <div class="video">
+      {% if v.fichier %}
+        <video controls><source src="{{ v.fichier.url }}" type="video/mp4"></video>
+      {% elif v.lien_youtube %}
+        <iframe src="{{ v.lien_youtube }}" allowfullscreen></iframe>
+      {% endif %}
+      <h3>{{ v.titre }}</h3>
+    </div>
+    {% empty %}
+    <p>Aucune vidéo pour le moment.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

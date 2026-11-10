@@ -1,10 +1,10 @@
 from django.contrib import admin
+from .models import Actualite, Photo, Video
+from .models import Actualite, Photo, Video, Maire
 
-# Register your models here.
-from django.contrib import admin
-from .models import Actualite, Evenement, Photo, Message
-
+admin.site.register(Maire)
 admin.site.register(Actualite)
-admin.site.register(Evenement)
 admin.site.register(Photo)
-admin.site.register(Message)
+admin.site.register(Video)
+def __str__(self):
+    return self.nom

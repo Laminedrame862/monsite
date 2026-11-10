@@ -1,30 +1,79 @@
-   <!DOCTYPE html>
-   <html lang="fr">
-   <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>{% block titre %}Village de BEMET{% endblock %}</title>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-   </head>
-   <body>
-     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-         <a class="nav-link text-white" href="{% url 'galerie' %}">Galerie</a>
-       <div class="container">
-         <a class="navbar-brand" href="{% url 'accueil' %}">BEMET</a>   <div class="navbar-nav flex-row gap-3">
-     <a class="nav-link" href="{% url 'accueil' %}">Accueil</a>
-     <a class="nav-link" href="{% url 'galerie' %}">Galerie</a>
-     <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-        <a class="nav-link text-white" href="{% url 'presentation' %}">Présentation</a>
-   </div>
-       </div>
-     </nav>
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}BEMET{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+</head>
+<body>
 
-     <main class="container my-4">
-       {% block contenu %}{% endblock %}
-     </main>
+<header>
+  <div class="topbar">
+    <div class="top-gauche">
+      <strong>Explorer</strong>
+      <input type="text" placeholder="Recherche...">
+    </div>
+    <a href="{% url 'accueil' %}" class="logo">BEMET</a>
+    <div class="top-droite">
+      <a href="{% url 'accueil' %}">Actualités et événements</a>
+      <a href="{% url 'galerie' %}">Multimédia</a>
+      <a href="{% url 'contact' %}">Contact</a>
+    </div>
+  </div>
+  <nav class="subnav">
+    <a href="{% url 'accueil' %}">Accueil de BEMET</a>
+    <a href="{% url 'presentation' %}">Présentation</a>
+    <a href="{% url 'galerie' %}">Galerie</a>
+    <a href="{% url 'videos' %}">Vidéos</a>
+    <a href="{% url 'presentation' %}">Le Gamou</a>
+    <a href="{% url 'contact' %}">Contact</a>
+  </nav>
+</header>
 
-     <footer class="text-center text-muted py-3">
-       © Village de BEMET
-     </footer>
-   </body>
-   </html>
+{% block content %}{% endblock %}
+
+<footer class="footer">
+  <div class="footer-logo">BEMET</div>
+  <div class="footer-haut">
+    <div class="footer-bloc">
+      <h2>Village de BEMET</h2>
+      <p>BEMET, village de la région de Sédhiou, département de Bounkiling : son histoire, ses actualités et ses habitants, fiers de leur village.</p>
+      <a href="{% url 'presentation' %}">À propos de BEMET</a>
+      <a href="{% url 'contact' %}" class="lien-fort">Rejoignez-nous <span class="fleche">→</span></a>
+    </div>
+    <div class="footer-col">
+      <a href="{% url 'accueil' %}">Accueil</a>
+      <a href="{% url 'accueil' %}">Actualités et événements</a>
+      <a href="{% url 'galerie' %}">Multimédia</a>
+      <a href="{% url 'contact' %}">Contact</a>
+    </div>
+    <div class="footer-col">
+      <a href="{% url 'presentation' %}">Histoire</a>
+      <a href="{% url 'presentation' %}">Le Gamou</a>
+      <a href="{% url 'galerie' %}">Photos</a>
+      <a href="{% url 'videos' %}">Vidéos</a>
+    </div>
+    <div class="footer-col">
+      <a href="{% url 'presentation' %}">À propos de BEMET</a>
+      <a href="{% url 'contact' %}">Nous écrire</a>
+      <a href="{% url 'accueil' %}">Plan du site</a>
+    </div>
+    <div class="footer-social">
+      <h3>Suivez BEMET</h3>
+      <div class="ronds">
+        <a href="#">f</a><a href="#">in</a><a href="#">X</a><a href="#">▶️</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bas">
+    <a href="{% url 'accueil' %}">Plan du site</a>
+    <a href="{% url 'contact' %}">Contactez BEMET</a>
+    <a href="{% url 'accueil' %}">Accessibilité</a>
+  </div>
+  <p class="maj">Dernière mise à jour de la page : {% now "j F Y" %}</p>
+</footer>
+
+</body>
+</html>
